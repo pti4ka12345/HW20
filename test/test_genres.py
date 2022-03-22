@@ -41,6 +41,10 @@ class TestGenreService:
         genre = self.genre_service.get_one(1)
         assert genre.id is not None
 
+    def test_get_one(self):
+        genre = self.genre_service.get_one(5)
+        assert genre.id is None
+
     def test_get_all(self):
         genres = self.genre_service.get_all()
         assert len(genres) > 0
@@ -56,6 +60,11 @@ class TestGenreService:
         self.genre_service.delete(1)
         genre = self.genre_service.get_one(1)
         assert genre is None
+
+    def test_delete(self):
+        self.genre_service.delete(5)
+        genre = self.genre_service.get_one(5)
+        assert genre is not None
 
     def test_update(self):
         genre_d = {
